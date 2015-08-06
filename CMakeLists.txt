@@ -28,3 +28,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_link_boost(${PROJECT_NAME} thread)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
+
+rosbuild_add_executable(square_auto src/square_auto.cpp)
+rosbuild_add_executable(follow_auto src/follow_auto.cpp)
+rosbuild_add_executable(velocity_demo src/velocity_demo.cpp)
