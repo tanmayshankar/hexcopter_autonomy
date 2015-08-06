@@ -5,7 +5,6 @@
 #include <nav_msgs/Path.h>
 // #include <mavros/utils.h>
 #include <math.h>
-#include <cmath.>
 
 /*
 First get the set-point location. 
@@ -32,6 +31,7 @@ class setpoint
     ros::NodeHandle nh_;
     //Setting a publisher for publishing the outgoing set_points to the Pixhawk.
     ros::Publisher set_point_pub, set_point_pub_1, set_point_pub_2, set_point_pub_3, set_point_pub_4, set_point_pub_5; 
+    ros::Publisher velocity_set_point_pub;
     //Setting a subscriber to take in the local position of the pixhawk (from GPS). 
     ros::Subscriber gps_local_own_pose_sub;
 
@@ -40,15 +40,9 @@ class setpoint
     //Now writing corresponding callback function. 
 
     int check_reached()
-      {// {   if (((gps_local_own_pose.pose.position.x - set_point_pose.pose.position.x)<0.5) &&
-      //         ((gps_local_own_pose.pose.position.y - set_point_pose.pose.position.y)<0.5) &&
-      //         ((gps_local_own_pose.pose.position.z - set_point_pose.pose.position.z)<0.5) )
-      //       return 1;        
-      //     else 
-      //       return 0;
-          if ( (abs(gps_local_own_pose.pose.position.x - set_point_pose.pose.position.x) < 0.5) &&
-               (abs(gps_local_own_pose.pose.position.y - set_point_pose.pose.position.y) < 0.5) &&
-               (abs(gps_local_own_pose.pose.position.z - set_point_pose.pose.position.z) < 0.5) )
+      {   if (((gps_local_own_pose.pose.position.x - set_point_pose.pose.position.x)<0.5) &&
+              ((gps_local_own_pose.pose.position.y - set_point_pose.pose.position.y)<0.5) &&
+              ((gps_local_own_pose.pose.position.z - set_point_pose.pose.position.z)<0.5) )
             return 1;        
           else 
             return 0;
